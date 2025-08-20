@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700"
+    />
+    <title>FRIDAY - Today's Summary</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-[#101a23] dark group/design-root overflow-x-hidden"
+      style='--checkbox-tick-svg: url(&apos;data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(255,255,255)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3cpath d=%27M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z%27/%3e%3c/svg%3e&apos;); font-family: "Space Grotesk", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#223649] px-10 py-3">
+          <div class="flex items-center gap-4 text-white">
+            <div class="size-4">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
+              </svg>
+            </div>
+            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">FRIDAY</h2>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="/">Chatbot</a>
+              <a class="text-white text-sm font-medium leading-normal" href="/today">Today's Summary</a>
+              <a class="text-white text-sm font-medium leading-normal" href="/recommendations">Recommendations</a>
+            </div>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/a/ACg8ocJ_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_3_-a");'
+            ></div>
+          </div>
+        </header>
+        <div class="gap-1 px-6 flex flex-1 justify-center py-5">
+          <!-- Left Column: Principle and Tip of the Day -->
+          <div class="layout-content-container flex flex-col w-80">
+            <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Principle &amp; Tip of the Day</h3>
+            <div class="p-4">
+              <div class="flex items-stretch justify-between gap-4 rounded-lg">
+                <div class="flex flex-col gap-1 flex-[2_2_0px]">
+                  <p class="text-white text-base font-bold leading-tight">Principle: Focus on the user</p>
+                  <p class="text-[#90adcb] text-sm font-normal leading-normal">Always keep the user's needs and experience at the forefront of your work.</p>
+                </div>
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAlh9ulQZqDHest03CV4Snxld5siv9tiGxM7l62FD-824wYqSTeAs9gdTerHKNu1aFqZwEGah6YuOKKa9-KQ2mABzK6verSULHxTXavcjMPTZmdRmH7-NHBJPx3ptuQiSF5t8dn7k5OKI07tEPARS37IY6MJDjBlVKiP17f8eLumGkR7GsI-j8rt_nfICc4F17Ogr98MrpFmmve8X7Kg8ShGTSE1ywoxP95ZXRz7X2Qlxr6TxG9ZctWg1OyujVpUuVF2NPA7Qa-OfO3");'
+                ></div>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex items-stretch justify-between gap-4 rounded-lg">
+                <div class="flex flex-col gap-1 flex-[2_2_0px]">
+                  <p class="text-white text-base font-bold leading-tight">Tip: Use AI tools to enhance productivity</p>
+                  <p class="text-[#90adcb] text-sm font-normal leading-normal">Leverage AI tools to streamline your workflow and boost efficiency.</p>
+                </div>
+                <div
+                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHmjdeVtaGNzSEC7sZFOHlQUMcl_3Lf4CTqzU4k04DXgrlp-KFMrYdU03KYIl9e0UH4RYJQnJw7MPiqxrSeKYdLMDc6nQ3T5J0mdiPX5K5ACgYilvH4j-ySD9gaskHOV5azrKjYks1zF2SptkP0nC7V5OY_chWNCAKz-BgrGXgWl2CcozfbQtPBETRK6R17DN5aRTzH4WTBCykrKPNIIp69hDO7WNHJ3P3A9uUHHerbF5aGfYAQMc81kkCrdIysKD9Rxv9-6rt1wyU");'
+                ></div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right Column: Main Content -->
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <h2 class="text-white tracking-light text-[28px] font-bold leading-tight px-4 text-left pb-3 pt-5" id="greeting">Good morning</h2>
+            <div class="flex flex-row gap-4 flex-grow min-h-0">
+                <!-- To-dos Column -->
+                <div class="flex-1 flex flex-col">
+                    <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2">To-dos</h3>
+                    <div class="px-4 overflow-y-auto h-96" id="todos-container">
+                        <p class="text-[#90adcb]">Loading to-dos...</p>
+                    </div>
+                </div>
+                <!-- Team & Beyond Pulse Column -->
+                <div class="flex-1 flex flex-col">
+                    <h3 class="text-white text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2">Team &amp; Beyond Pulse</h3>
+                    <div class="overflow-y-auto h-96" id="updates-container">
+                        <p class="text-[#90adcb] px-4">Loading team updates...</p>
+                    </div>
+                </div>
+            </div>
+            <!-- AI Assistant Bar -->
+            <div class="flex items-center px-4 py-3 gap-3 @container mt-4">
+              <div
+                class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 shrink-0"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCR3mHUvADKNHwk43mprjvsmSJ8ZCZveZWcqbq34cVlN12biBGrr4yv1MKyG4vkc4tGKu4I21JF9aDOb-AzhthqVR-X-3Yf4cel_UxpFIDNgVQ_ngw4mBF6kdksNqXLaiaNfqBnH5pfzDZyEw1dcQmS4FvSX4rB461s-o3dU9pXMQJDvLEA-8xAIQvprvpcz0iavWZxhMtINTzGbUWWwKA_M3bX7PpDDmEs6oiii1X4WWeA3o200qEC5OhOihKhKSfGf6HLcUEfSnLv");'
+              ></div>
+              <label class="flex flex-col min-w-40 h-12 flex-1">
+                <div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+                  <input
+                    placeholder="Ask me anything..."
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#223649] focus:border-none h-full placeholder:text-[#90adcb] px-4 rounded-r-none border-r-0 pr-2 text-base font-normal leading-normal"
+                    value=""
+                  />
+                  <div class="flex border-none bg-[#223649] items-center justify-center pr-4 rounded-r-lg border-l-0 !pr-2">
+                    <button class="min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-[#3d99f5] text-white text-sm font-medium leading-normal">
+                      <span class="truncate">Send</span>
+                    </button>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript remains the same
+      document.addEventListener('DOMContentLoaded', async () => {
+        const todosContainer = document.getElementById('todos-container');
+        const updatesContainer = document.getElementById('updates-container');
+        const greetingElement = document.getElementById('greeting');
+
+        try {
+            const contextResponse = await fetch('/context');
+            const contextData = await contextResponse.json();
+            const name = contextData.name || 'there';
+            greetingElement.textContent = `Good morning, ${name}`;
+        } catch (error) {
+            console.error('Error fetching user context:', error);
+            greetingElement.textContent = 'Good morning';
+        }
+
+        try {
+          const response = await fetch('/api/gmail/today');
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+          const data = await response.json();
+
+          todosContainer.innerHTML = '';
+          updatesContainer.innerHTML = '';
+
+          if (data.todos && data.todos.length > 0) {
+            data.todos.forEach(todo => {
+              const todoElement = document.createElement('label');
+              todoElement.className = 'flex gap-x-3 py-3 flex-row items-center';
+              todoElement.innerHTML = `
+                <input type="checkbox" class="h-5 w-5 rounded border-[#314d68] border-2 bg-transparent text-[#3d99f5] checked:bg-[#3d99f5] focus:ring-0 focus:ring-offset-0"/>
+                <div>
+                    <p class="text-white text-base font-normal leading-normal">${todo.task || 'No summary available'}</p>
+                    <a href="${todo.link}" target="_blank" class="text-[#90adcb] text-sm hover:underline">${todo.link ? 'Relevant Link' : ''}</a>
+                </div>`;
+              todosContainer.appendChild(todoElement);
+            });
+          } else {
+            todosContainer.innerHTML = '<p class="text-[#90adcb]">No new to-do items found for today.</p>';
+          }
+
+          if (data.team_updates && data.team_updates.length > 0) {
+            data.team_updates.forEach(update => {
+              const updateElement = document.createElement('div');
+              updateElement.className = 'p-4';
+              updateElement.innerHTML = `
+                <div class="flex items-stretch justify-between gap-4 rounded-lg">
+                  <div class="flex flex-col gap-1 flex-[2_2_0px]">
+                    <p class="text-white text-base font-bold leading-tight">${update.subject || 'Team Update'}</p>
+                    <p class="text-[#90adcb] text-sm font-normal leading-normal">${update.update || 'No summary available'}</p>
+                    <a href="${update.link}" target="_blank" class="text-sm text-[#3d99f5] hover:underline">${update.link ? 'Read more' : ''}</a>
+                  </div>
+                  <div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg flex-1"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB3lRPsIuqICt6yJn9gM4Stko75x2Kd6_48sjmh6RIXjz4NRkXtDOvyMSTnqnIi0vqwaxtLM4apI4k70fEA-SpLIbeyMKWXw9qDwaqzKdLcMLltwzzDzMSA2OVsFQPPbbGemZcNKro7oCa2aotB_StdqGXwwVQLCU9ooYeZcrWrOUrcLDd0m_NgtQV_Xwx1in4Q7Gs7gLwXO8vAINaiDFwRFxCviteDt22n6CL1OLOL9XpadZ0oD2_ICtMC3gv2gU7ok867M9N5eJlI");'>
+                  </div>
+                </div>`;
+              updatesContainer.appendChild(updateElement);
+            });
+          } else {
+            updatesContainer.innerHTML = '<p class="text-[#90adcb] px-4">No new team updates found for today.</p>';
+          }
+        } catch (error) {
+          console.error('Error fetching today summary:', error);
+          todosContainer.innerHTML = '<p class="text-red-400">Error loading to-dos.</p>';
+          updatesContainer.innerHTML = '<p class="text-red-400">Error loading team updates.</p>';
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+google-api-python-client
+google-auth-oauthlib
+python-dotenv
+beautifulsoup4
+lxml
+google-generativeai
+requests
+google-cloud-aiplatform

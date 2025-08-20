@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# Credentials
+credentials.json
+token.json
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
