@@ -147,15 +147,16 @@
             console.error('Error fetching user context:', error);
         }
 
-        // Fetch Gmail Summary
+        // Fetch Combined Summary (Gmail To-dos and Pulse Updates)
         try {
-          const gmailResponse = await fetch('/api/gmail/today');
-          const gmailData = await gmailResponse.json();
-          
+          const summaryResponse = await fetch('/api/today_summary');
+          if (!summaryResponse.ok) throw new Error(`HTTP error! status: ${summaryResponse.status}`);
+          const summaryData = await summaryResponse.json();
+
           // Render To-dos
           todosContainer.innerHTML = '';
-          if (gmailData.todos && gmailData.todos.length > 0) {
-            gmailData.todos.forEach(todo => {
+          if (summaryData.todos && summaryData.todos.length > 0) {
+            summaryData.todos.forEach(todo => {
               const todoElement = document.createElement('label');
               todoElement.className = 'flex gap-x-3 py-3 flex-row items-center';
               const textContainer = document.createElement('div');
@@ -183,8 +184,8 @@
 
           // Render Team Updates
           updatesContainer.innerHTML = '';
-          if (gmailData.team_updates && gmailData.team_updates.length > 0) {
-            gmailData.team_updates.forEach(update => {
+          if (summaryData.team_updates && summaryData.team_updates.length > 0) {
+            summaryData.team_updates.forEach(update => {
               const updateElement = document.createElement('div');
               updateElement.className = 'p-4';
               const textContainer = document.createElement('div');
@@ -216,7 +217,9 @@
           }
 
         } catch (error) {
-          console.error('Error fetching Gmail summary:', error);
+          console.error('Error fetching today summary:', error);
+          todosContainer.innerHTML = `<p class="text-red-400">Error: ${error.message}</p>`;
+          updatesContainer.innerHTML = `<p class="text-red-400">Error: ${error.message}</p>`;
         }
 
         // Fetch Calendar Events

@@ -22,14 +22,12 @@ except Exception as e:
 
 def analyze_emails(emails):
     """
-    Analyzes a list of emails using the Gemini API to extract to-dos and team updates.
+    Analyzes a list of emails using the Gemini API to extract to-dos.
     """
     if not model:
-        return {"error": "The Gemini API is not configured."}
+        return {"todos": [], "team_updates": []} # Return empty structure on error
 
     todos = []
-    team_updates = []
-
     for email in emails:
         try:
             payload = email.get("payload", {})
@@ -56,47 +54,36 @@ def analyze_emails(emails):
                 body_html = base64.urlsafe_b64decode(data).decode("utf-8")
 
             soup = BeautifulSoup(body_html, "lxml")
-            text_body = soup.get_text(separator="\n", strip=True)[:4000] # Limit body size
+            text_body = soup.get_text(separator="\n", strip=True)[:4000]
 
             prompt = f"""
-            You are an expert at analyzing email content to help users prioritize their work. You will be given an email's sender, subject, and body text. Your task is to perform three specific actions based on the content.
-            Analyze the content of the following email and classify it.
+            Analyze the content of the following email.
             
             From: {sender}
             Subject: {subject}
             Body Snippet: {text_body}
 
-            1.  **Classification**: **Classify the email's purpose.** Determine if the email is a 'to-do', 'team_update', or 'none'.
-    * A **'to-do'** email requires a direct action or response from the recipient. Look for clear requests, questions, or assigned tasks.
-    * A **'team_update'** email provides information, such as a status report, meeting minutes, or a general announcement. It doesn't typically require a direct action from the recipient.
-    * If the email does not fit into either category, classify it as **'none'**
-            2.  **Summary**: **Provide a one-sentence summary.** If the email is classified as 'to-do' or 'team_update', create a concise, single-sentence summary of its main point. This summary should capture the essence of the email without unnecessary details.
-            3.  **Link**: **Extract a single hyperlink.** Scan the email body for any hyperlinks (URLs). If a link exists, extract the most relevant one. If there are multiple links, prioritize the one most central to the email's purpose. If no links are present, return 'null'
+            1.  **Classification**: Is this email a 'to-do' that requires a direct action from the recipient? Answer 'yes' or 'no'.
+            2.  **Summary**: If it is a 'to-do', provide a concise one-sentence summary of the required action.
+            3.  **Link**: Extract the single most relevant hyperlink from the email body, if one exists.
 
-            Respond with a single JSON object with the keys "classification", "summary", and "link".
+            Respond with a single JSON object with the keys "is_todo", "summary", and "link".
             """
 
-            logging.info(f"Analyzing email from {sender} with subject '{subject}'...")
+            logging.info(f"Analyzing email for to-dos from {sender} with subject '{subject}'...")
             response = model.generate_content(prompt)
             
-            # Clean up the response to be valid JSON
             cleaned_response = response.text.strip().replace("```json", "").replace("```", "")
             analysis = json.loads(cleaned_response)
 
-            if analysis.get("classification") == "to-do":
+            if analysis.get("is_todo") == "yes":
                 todos.append({
                     "task": analysis.get("summary", subject),
                     "link": analysis.get("link", "")
                 })
-            elif analysis.get("classification") == "team_update":
-                team_updates.append({
-                    "subject": subject,
-                    "update": analysis.get("summary", "No summary available."),
-                    "link": analysis.get("link", "")
-                })
 
         except Exception as e:
-            logging.error(f"Could not process email: {subject}. Error: {e}")
+            logging.error(f"Could not process email for to-do: {subject}. Error: {e}")
             continue
 
-    return {"todos": todos, "team_updates": team_updates}
+    return {"todos": todos}

@@ -24,6 +24,9 @@ from recommendation.agent import generate_recommendations
 # Calendar integration import
 from calendar_integration.service import get_todays_calendar_events
 
+# New Pulse Agent import
+from pulse_agent import get_pulse_updates
+
 # --- Basic Setup ---
 app = FastAPI(title="Personal AI Assistant")
 logging.basicConfig(level=logging.INFO)
@@ -31,17 +34,30 @@ logging.basicConfig(level=logging.INFO)
 # --- API Routers ---
 api_router = APIRouter(prefix="/api")
 
-# --- Gmail Agent API ---
-@api_router.get("/gmail/today", tags=["API - Gmail Agent"])
+# --- Combined Today Summary API ---
+@api_router.get("/today_summary", tags=["API - Today Summary"])
 def get_today_summary_api():
-    """API endpoint to get email summary data."""
-    service = get_gmail_service()
-    if not service:
+    """
+    API endpoint that combines Gmail to-dos and Pulse updates.
+    """
+    # 1. Get To-dos from Gmail
+    gmail_service = get_gmail_service()
+    if not gmail_service:
         raise HTTPException(status_code=500, detail="Failed to connect to Gmail service.")
-    emails = get_todays_emails(service)
+    emails = get_todays_emails(gmail_service)
     if emails is None:
         raise HTTPException(status_code=500, detail="Failed to fetch emails.")
-    return analyze_gmail_emails(emails)
+    
+    gmail_summary = analyze_gmail_emails(emails)
+    
+    # 2. Get Team & Beyond Pulse
+    pulse_updates = get_pulse_updates()
+
+    # 3. Combine and return
+    return {
+        "todos": gmail_summary.get("todos", []),
+        "team_updates": pulse_updates
+    }
 
 # --- Calendar API ---
 @api_router.get("/calendar/today", tags=["API - Calendar"])
