@@ -38,19 +38,91 @@ def generate_recommendations():
         user_area = user_context.get('area', 'area')
 
         # Step 1: Get role-specific skill topics
-        prompt1 = f"Based on a Google employee with the role '{user_role}' on the '{user_team}' team, what are 3 highly relevant, specific technical skills or tools they should learn about? Respond with a simple comma-separated list."
+        prompt1 = f"""You are FRIDAY, an expert career development partner at Google. Your task is to identify and recommend upskilling topics for a Google employee based on their professional role and team.
+
+        **User Context:**
+        - Role: {user_role}
+        - Team: {user_team}
+        - Area: {user_area}
+
+        **Instructions:**
+        1.  **Identify Core Competencies:** Based on the user's role and team, determine the 3-5 most critical skills or knowledge areas that someone in their position should master.
+        2.  **Suggest Actionable Topics:** For each core competency, list 2-3 specific, actionable learning topics. These should be things they can immediately start exploring, such as a particular technology, a design pattern, or a project management technique.
+        3.  **Provide a Brief Rationale:** For each topic, add a one-sentence explanation of why it is relevant and important for a person in their role.
+
+        **Output Format:**
+        Use markdown headings for each core competency, followed by a bulleted list of the recommended topics and their rationales.
+
+        **Example:**
+        *If the user's role is "Software Engineer" and their team is "Cloud Infrastructure"*:
+
+        #### Core Competency: Cloud-Native Development
+        - **Topic: Containerization with Docker and Kubernetes.** Rationale: Understanding container orchestration is fundamental for managing and deploying scalable applications on Google Cloud.
+        - **Topic: Serverless Architecture with Cloud Functions.** Rationale: This enables you to build and deploy event-driven applications without managing servers, a key skill for efficient cloud development.
+
+        #### Core Competency: System Reliability
+        - **Topic: Site Reliability Engineering (SRE) Principles.** Rationale: This is a core part of Google's engineering culture and is essential for building robust and scalable systems.
+        - **Topic: Incident Management & Post-mortems.** Rationale: Learning how to respond to and analyze system failures is a critical skill for maintaining service health and preventing future issues."""
         logging.info("Step 1: Getting role-specific skills...")
         role_skills_response = model.generate_content(prompt1)
         role_skills = role_skills_response.text.strip().split(',')
 
         # Step 2: Get trending topics
-        prompt2 = f"What are 2 major, trending topics in the tech industry that would be valuable for a Googler in a '{user_area}' role to learn about? Respond with a simple comma-separated list."
+        prompt2 = f"""
+        **User Context:**
+        - Role: {user_role}
+        - Team: {user_team}
+        - Area: {user_area}
+
+        **Instructions:**
+        1.  **Identify Trending Fields:** Based on your knowledge of Google and the broader tech industry, identify 2-3 major trending fields (e.g., Generative AI, Quantum Computing, etc.)
+        2.  **Propose Sub-topics:** For each field, propose one specific, accessible sub-topic or technology that a person in the user's area could learn about.
+        3.  **Explain the "Why":** For each sub-topic, provide a clear, one-sentence rationale explaining its relevance to Google and the user's long-term career.
+
+        **Output Format:**
+        Use a structured, brief format with a clear heading for each trending topic.
+
+        **Example:**
+        *If the user's area is "Android Development"*:
+
+        #### AI/ML for Mobile
+        - **Topic: On-device Machine Learning with TensorFlow Lite.** Rationale: As AI becomes ubiquitous, understanding how to run machine learning models locally on mobile devices is a critical skill for building powerful, low-latency apps.
+
+        #### Cloud & Edge Computing
+        - **Topic: IoT and Edge Device Management.** Rationale: With the rise of smart devices, exploring how edge computing complements mobile devices is key to building applications for the next generation of hardware.
+        """
         logging.info("Step 2: Getting trending topics...")
         trending_topics_response = model.generate_content(prompt2)
         trending_topics = trending_topics_response.text.strip().split(',')
 
         # Step 3: Get event ideas
-        prompt3 = f"Suggest 2 types of internal Google events (like workshops, tech talks, or speaker series) that would be relevant for a '{user_role}'. Respond with a simple comma-separated list."
+        prompt3 = f"""You are FRIDAY, an internal events curator for Google employees. Your task is to suggest relevant internal events, workshops, and speaker series to a Google employee based on their team, location, and potential interests.
+
+        **User Context:**
+        - Role: {user_role}
+        - Team: {user_team}
+        - Area: {user_area}
+
+        **Instructions:**
+        1.  **Categorize Events:** Group event suggestions into two logical categories: a) **Professional Development** (e.g., workshops directly related to their work) and b) **Community & Broader Topics** (e.g., social events, talks on cross-functional subjects).
+        2.  **Suggest 2-3 Events per Category:** For each category, propose a few event ideas. These ideas should be plausible for a real Google employee.
+        3.  **Provide a Hook:** For each event, add a brief, engaging description of what the event is about and why they might find it valuable. Use a direct, inviting tone.
+
+        **Output Format:**
+        Use clear headings for each category, followed by a bulleted list of event ideas.
+
+        **Example:**
+        *If the user is a "Product Manager" in "Mountain View, CA"*:
+
+        #### Professional Development
+        - **"Navigating the OKR Planning Process" Workshop:** Get hands-on guidance from senior leaders on how to write effective OKRs that drive impact across product teams.
+        - **"User Research Fundamentals" Speaker Series:** Learn best practices for conducting user interviews and synthesizing insights to inform your product roadmap.
+
+        #### Community & Broader Topics
+        - **"AI & Ethics in Product Design" Tech Talk:** Join a discussion on the ethical considerations of building AI-powered products, featuring speakers from the Responsible AI team.
+        - **"Google Foodie Club" Happy Hour:** Connect with fellow Googlers in the Bay Area who share your passion for food and network in a casual, fun setting.
+        """
+
         logging.info("Step 3: Getting event ideas...")
         event_ideas_response = model.generate_content(prompt3)
         event_ideas = event_ideas_response.text.strip().split(',')

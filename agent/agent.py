@@ -59,15 +59,19 @@ def analyze_emails(emails):
             text_body = soup.get_text(separator="\n", strip=True)[:4000] # Limit body size
 
             prompt = f"""
+            You are an expert at analyzing email content to help users prioritize their work. You will be given an email's sender, subject, and body text. Your task is to perform three specific actions based on the content.
             Analyze the content of the following email and classify it.
             
             From: {sender}
             Subject: {subject}
             Body Snippet: {text_body}
 
-            1.  **Classification**: Is this email primarily a 'to-do' (requiring a direct action from the recipient), a 'team_update' (a general announcement, meeting notes, or status update), or 'none'?
-            2.  **Summary**: If it is a 'to-do' or 'team_update', provide a concise one-sentence summary.
-            3.  **Link**: Extract the single most relevant hyperlink from the email body, if one exists.
+            1.  **Classification**: **Classify the email's purpose.** Determine if the email is a 'to-do', 'team_update', or 'none'.
+    * A **'to-do'** email requires a direct action or response from the recipient. Look for clear requests, questions, or assigned tasks.
+    * A **'team_update'** email provides information, such as a status report, meeting minutes, or a general announcement. It doesn't typically require a direct action from the recipient.
+    * If the email does not fit into either category, classify it as **'none'**
+            2.  **Summary**: **Provide a one-sentence summary.** If the email is classified as 'to-do' or 'team_update', create a concise, single-sentence summary of its main point. This summary should capture the essence of the email without unnecessary details.
+            3.  **Link**: **Extract a single hyperlink.** Scan the email body for any hyperlinks (URLs). If a link exists, extract the most relevant one. If there are multiple links, prioritize the one most central to the email's purpose. If no links are present, return 'null'
 
             Respond with a single JSON object with the keys "classification", "summary", and "link".
             """
